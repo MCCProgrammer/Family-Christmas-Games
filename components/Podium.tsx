@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { Team } from '../types';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import confetti from 'canvas-confetti';
 
 interface Props {
   teams: Team[];
@@ -40,24 +40,24 @@ const Podium: React.FC<Props> = ({ teams, onFinish }) => {
 
   useEffect(() => {
     const sequence = async () => {
-      // Começar com tambores
+      // Start with a drum roll
       const drumroll = playSound(SOUNDS.DRUMROLL, 0.4, true);
       
       await new Promise(r => setTimeout(r, 2000));
       
-      // Revelar 3º
+      // Reveal 3rd place
       setRevealedStep(1);
       playSound(SOUNDS.REVEAL, 0.6);
       confetti({ particleCount: 30, spread: 50, origin: { x: 0.8, y: 0.8 } });
       await new Promise(r => setTimeout(r, 2500));
 
-      // Revelar 2º
+      // Reveal 2nd place
       setRevealedStep(2);
       playSound(SOUNDS.REVEAL, 0.6);
       confetti({ particleCount: 35, spread: 50, origin: { x: 0.2, y: 0.8 } });
       await new Promise(r => setTimeout(r, 3000));
 
-      // Parar tambores antes do grande final
+      // Stop the drums before the big finale
       if (drumroll) {
         drumroll.pause();
       }
@@ -132,7 +132,7 @@ const Podium: React.FC<Props> = ({ teams, onFinish }) => {
           <div className="animate-in fade-in zoom-in duration-700">
              <div className="text-8xl mb-6 animate-pulse">🥁</div>
              <h2 className="text-white text-4xl md:text-6xl christmas-font font-black mb-4 drop-shadow-2xl">
-               E o vencedor é...
+               And the winner is...
              </h2>
              <div className="w-16 h-1 bg-white/20 mx-auto rounded-full animate-pulse" />
           </div>
@@ -142,7 +142,7 @@ const Podium: React.FC<Props> = ({ teams, onFinish }) => {
           <div className="animate-in fade-in zoom-in duration-1000">
              <div className="text-7xl mb-4 animate-bounce">👑</div>
              <h2 className="text-yellow-400 text-6xl md:text-8xl christmas-font font-black mb-2 drop-shadow-[0_0_30px_rgba(250,204,21,0.5)]">
-               PARABÉNS!
+               CONGRATULATIONS!
              </h2>
              <p className="text-white/80 text-xl font-bold uppercase tracking-[0.3em] bg-white/5 px-8 py-3 rounded-full backdrop-blur-md inline-block">
                {first?.name}
@@ -153,7 +153,7 @@ const Podium: React.FC<Props> = ({ teams, onFinish }) => {
         {revealedStep > 0 && revealedStep < 3 && (
           <div className="animate-pulse">
             <h2 className="text-white/40 text-4xl christmas-font font-black">
-              {revealedStep === 1 ? 'Revelando o 3º Lugar...' : 'Quem será o 2º?'}
+              {revealedStep === 1 ? 'Revealing 3rd place...' : 'Who will be 2nd?'}
             </h2>
           </div>
         )}
@@ -219,7 +219,7 @@ const Podium: React.FC<Props> = ({ teams, onFinish }) => {
           className="bg-white text-slate-900 font-black py-4 px-12 rounded-full text-xl shadow-[0_20px_50px_rgba(255,255,255,0.2)] transition-all hover:scale-110 active:scale-95 flex items-center gap-3 group"
         >
           <span>🎁</span>
-          <span>Voltar ao Início</span>
+          <span>Back to start</span>
           <span className="group-hover:translate-x-1 transition-transform">→</span>
         </button>
       </div>

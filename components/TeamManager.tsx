@@ -53,8 +53,8 @@ const TeamManager: React.FC<Props> = ({ members, teams, setTeams }) => {
   return (
     <div className="p-6">
       <div className="mb-8 text-center">
-        <h2 className="text-2xl font-bold text-emerald-600 mb-2">Formar Equipas</h2>
-        <p className="text-slate-500">Cria as equipas e clica nos membros para as preencher.</p>
+        <h2 className="text-2xl font-bold text-emerald-600 mb-2">Make the teams</h2>
+        <p className="text-slate-500">Create the teams, then click on people to add them.</p>
       </div>
 
       <form onSubmit={createTeam} className="bg-emerald-50 p-6 rounded-2xl mb-8 shadow-inner">
@@ -75,14 +75,14 @@ const TeamManager: React.FC<Props> = ({ members, teams, setTeams }) => {
             type="text"
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
-            placeholder="Nome da equipa (ex: Duendes)..."
+            placeholder="Team name (e.g. The Elves)..."
             className="flex-1 px-4 py-3 rounded-xl border-2 border-emerald-100 bg-white text-slate-900 placeholder-slate-400 focus:border-emerald-400 focus:outline-none transition-colors font-semibold"
           />
           <button
             type="submit"
             className="bg-emerald-600 text-white px-6 py-3 rounded-xl hover:bg-emerald-700 transition-colors font-bold shadow-md"
           >
-            Criar Equipa
+            Create team
           </button>
         </div>
       </form>
@@ -112,7 +112,7 @@ const TeamManager: React.FC<Props> = ({ members, teams, setTeams }) => {
               ))}
             </div>
             <div className="bg-slate-50 px-4 py-2 text-xs text-slate-400">
-              {team.members.length} membros
+              {team.members.length} members
             </div>
           </div>
         ))}
@@ -120,7 +120,7 @@ const TeamManager: React.FC<Props> = ({ members, teams, setTeams }) => {
 
       {teams.length === 0 && (
         <div className="text-center py-12 opacity-30 italic">
-          Cria a tua primeira equipa acima!
+          Create your first team above!
         </div>
       )}
     </div>

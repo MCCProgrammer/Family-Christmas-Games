@@ -18,7 +18,7 @@ export interface Game {
   name: string;
   type: 'time-based' | 'points-only' | 'mixed';
   description: string;
-  scoreMetric?: string; // e.g., "Bolas apanhadas"
+  scoreMetric?: string; // e.g. "Baubles caught"
 }
 
 export interface GameHistory {

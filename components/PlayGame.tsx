@@ -64,7 +64,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
   };
 
   const handleCancelDuel = () => {
-    if (confirm('Cancelar este duelo e voltar à seleção de equipas?')) {
+    if (confirm('Cancel this duel and go back to team selection?')) {
       setIsRunning(false);
       setTimer(0);
       setView('team-match');
@@ -159,7 +159,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
   if (view === 'game-select') {
     return (
       <div className="p-8">
-        <h2 className="text-3xl font-black text-red-600 text-center mb-8 christmas-font">Escolher Jogo</h2>
+        <h2 className="text-3xl font-black text-red-600 text-center mb-8 christmas-font">Choose a game</h2>
         <div className="grid gap-4">
           {games.map(g => (
             <button key={g.id} onClick={() => { setSelectedGameId(g.id); setView('team-match'); }} className="bg-white border-4 border-red-50 p-6 rounded-3xl hover:border-red-500 transition-all text-left shadow-sm hover:shadow-md">
@@ -176,9 +176,9 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
   if (view === 'team-match') {
     return (
       <div className="p-8 text-center">
-        <button onClick={() => setView('game-select')} className="text-slate-400 font-bold mb-4 hover:text-red-500">← Voltar</button>
-        <h2 className="text-2xl font-black text-slate-800 mb-2">Preparar Duelo</h2>
-        <p className="text-slate-500 mb-8">Seleciona as duas equipas para {currentGame?.name}</p>
+        <button onClick={() => setView('game-select')} className="text-slate-400 font-bold mb-4 hover:text-red-500">← Back</button>
+        <h2 className="text-2xl font-black text-slate-800 mb-2">Set up the duel</h2>
+        <p className="text-slate-500 mb-8">Pick the two teams for {currentGame?.name}</p>
         
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
           {['t1', 't2'].map((key) => (
@@ -188,10 +188,10 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                   <>
                     <span className="text-4xl mb-2">⭐</span>
                     <h4 className="font-black text-xl text-slate-800">{teams.find(t => t.id === matchTeams[key as keyof typeof matchTeams])?.name}</h4>
-                    <button onClick={() => setMatchTeams(prev => ({ ...prev, [key]: null }))} className="text-red-500 text-xs font-bold mt-2">Remover</button>
+                    <button onClick={() => setMatchTeams(prev => ({ ...prev, [key]: null }))} className="text-red-500 text-xs font-bold mt-2">Remove</button>
                   </>
                 ) : (
-                  <span className="text-slate-300 font-bold">Seleciona Equipa {key === 't1' ? 'A' : 'B'}</span>
+                  <span className="text-slate-300 font-bold">Pick team {key === 't1' ? 'A' : 'B'}</span>
                 )}
               </div>
             </div>
@@ -222,7 +222,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
           disabled={!matchTeams.t1 || !matchTeams.t2}
           className="bg-red-600 text-white font-black px-12 py-5 rounded-full text-xl shadow-2xl disabled:opacity-30 transition-transform active:scale-95"
         >
-          {isTimeBased ? 'INICIAR CRONÓMETRO! 🚀' : 'REGISTAR PONTOS! 🚀'}
+          {isTimeBased ? 'START THE TIMER! 🚀' : 'ENTER THE SCORES! 🚀'}
         </button>
       </div>
     );
@@ -237,7 +237,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
         {/* Header */}
         <div className="bg-black/95 backdrop-blur-2xl border-b border-white/10 p-3 flex flex-col items-center z-[110] shadow-2xl">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-white/30 text-[9px] font-black tracking-widest uppercase">DESAFIO</span>
+            <span className="text-white/30 text-[9px] font-black tracking-widest uppercase">CHALLENGE</span>
             <div className="bg-red-500/10 text-red-400 px-2 py-0.5 rounded-full text-[9px] font-black border border-red-500/20 uppercase">{currentGame?.name}</div>
           </div>
           {isTimeBased && (
@@ -267,7 +267,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                   </h3>
                   <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 border border-white/20 backdrop-blur-lg">
                     <span className={`w-1.5 h-1.5 rounded-full ${isRedSide ? 'bg-red-400 animate-pulse' : 'bg-emerald-400 animate-pulse'}`} />
-                    <span className="text-white/90 text-[10px] font-black uppercase tracking-[0.2em]">EQUIPA {idx === 0 ? 'A' : 'B'}</span>
+                    <span className="text-white/90 text-[10px] font-black uppercase tracking-[0.2em]">TEAM {idx === 0 ? 'A' : 'B'}</span>
                   </div>
                 </div>
 
@@ -279,17 +279,17 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                         onClick={() => finishTeam(team.id)}
                         className="group relative bg-white text-slate-900 font-black py-8 md:py-10 rounded-[28px] text-xl md:text-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] active:scale-90 transition-all hover:bg-slate-50 ring-0 hover:ring-8 ring-white/10 uppercase animate-in zoom-in-95 duration-500"
                       >
-                        Terminou! ✅
+                        Done! ✅
                       </button>
                     ) : (
                       <div className="bg-white/10 border-2 border-white/40 p-6 rounded-[32px] text-center backdrop-blur-3xl animate-in fade-in zoom-in-95 shadow-2xl">
                          <div className="flex flex-col items-center">
-                           <span className="text-white/60 text-[9px] font-black uppercase tracking-widest mb-1">TEMPO FINAL</span>
+                           <span className="text-white/60 text-[9px] font-black uppercase tracking-widest mb-1">FINAL TIME</span>
                            <span className="text-white text-4xl font-black font-mono tracking-tighter drop-shadow-md">
                             {formatTime(stats.laps[0] || 0)}
                            </span>
                            <div className="mt-3 bg-white/20 px-3 py-1 rounded-full text-[9px] text-white font-black uppercase tracking-widest">
-                             CONCLUÍDO
+                             FINISHED
                            </div>
                          </div>
                       </div>
@@ -298,7 +298,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                     /* Score Entry for points-only games */
                     <div className="bg-white/10 p-8 rounded-[40px] border-2 border-white/20 backdrop-blur-xl flex flex-col items-center shadow-2xl">
                       <label className="text-white/60 text-[10px] font-black uppercase tracking-widest mb-4 text-center">
-                        {currentGame?.scoreMetric || "Introduz o Resultado"}
+                        {currentGame?.scoreMetric || "Enter the result"}
                       </label>
                       <input 
                         type="number"
@@ -307,7 +307,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                         className="bg-white text-slate-900 text-6xl font-black w-full text-center py-4 rounded-3xl outline-none focus:ring-8 ring-white/20"
                         autoFocus={idx === 0}
                       />
-                      <div className="mt-4 text-white/30 text-[9px] font-bold">INTRODUZ O VALOR NUMÉRICO</div>
+                      <div className="mt-4 text-white/30 text-[9px] font-bold">ENTER A NUMBER</div>
                     </div>
                   )}
                 </div>
@@ -324,14 +324,14 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                 onClick={() => setIsRunning(!isRunning)} 
                 className="bg-white/5 text-white font-black px-6 py-3 rounded-xl hover:bg-white/10 border border-white/5 transition-all flex items-center gap-2 active:scale-95"
               >
-                <span className="text-sm">{isRunning ? '⏸️ PAUSA' : '▶️ RETOMAR'}</span>
+                <span className="text-sm">{isRunning ? '⏸️ PAUSE' : '▶️ RESUME'}</span>
               </button>
             )}
             <button 
               onClick={handleCancelDuel} 
               className="text-white/40 font-bold px-4 py-3 hover:text-red-400 transition-colors text-[10px] uppercase tracking-widest"
             >
-              Cancelar Duelo
+              Cancel duel
             </button>
           </div>
           
@@ -340,7 +340,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
             disabled={isTimeBased ? !Object.values(duelStats).some(s => s.finished) : false}
             className="bg-yellow-400 text-yellow-950 font-black px-10 py-3.5 rounded-xl text-base shadow-xl transition-all hover:bg-yellow-300 active:scale-95 disabled:opacity-20 flex items-center gap-2 uppercase tracking-tighter"
           >
-            Registar Resultados 💾
+            Save results 💾
           </button>
         </div>
       </div>
@@ -358,7 +358,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
       <div className="p-8 max-w-2xl mx-auto">
         <div className="text-center mb-10">
           <div className="w-16 h-16 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">🏆</div>
-          <span className="text-xs font-black text-red-500 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full mb-2 inline-block">Placar do Jogo</span>
+          <span className="text-xs font-black text-red-500 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full mb-2 inline-block">Game scores</span>
           <h2 className="text-4xl font-black text-slate-800 christmas-font mt-2">{currentGame?.name}</h2>
         </div>
 
@@ -373,12 +373,12 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                   <div key={tid} className="bg-white p-5 rounded-[28px] flex items-center justify-between shadow-sm border border-slate-100 animate-in slide-in-from-bottom-4 transition-all hover:shadow-md" style={{animationDelay: `${idx * 0.1}s`}}>
                     <div className="flex items-center gap-5">
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl shadow-inner ${idx === 0 ? 'bg-yellow-400 text-yellow-900 shadow-yellow-200' : 'bg-slate-100 text-slate-400 shadow-slate-50'}`}>
-                        {idx + 1}º
+                        #{idx + 1}
                       </div>
                       <div>
                         <span className="font-black text-slate-800 text-xl block leading-none">{team?.name}</span>
                         <div className="flex items-center gap-2 mt-1">
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">EQUIPA</span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">TEAM</span>
                           <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 rounded-full">+{projectedPoints} PTS</span>
                         </div>
                       </div>
@@ -386,7 +386,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
                     <div className="text-right">
                       <span className="font-mono font-black text-2xl text-red-600 block leading-none">{resultVal}</span>
                       <span className="text-[10px] font-bold text-red-400 uppercase mt-1 block tracking-wider">
-                        {isTimeBased ? 'TEMPO' : 'PONTOS'}
+                        {isTimeBased ? 'TIME' : 'POINTS'}
                       </span>
                     </div>
                   </div>
@@ -395,7 +395,7 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
             {count === 0 && (
               <div className="py-12 text-center">
                  <div className="text-4xl mb-4 opacity-20">⏱️</div>
-                 <p className="text-slate-400 font-bold italic">Nenhum tempo registado nesta sessão.</p>
+                 <p className="text-slate-400 font-bold italic">No results saved in this round yet.</p>
               </div>
             )}
           </div>
@@ -406,14 +406,14 @@ const PlayGame: React.FC<Props> = ({ teams, games, onFinishGame }) => {
             onClick={() => { setMatchTeams({ t1: null, t2: null }); setView('team-match'); }}
             className="flex-1 bg-white border-4 border-slate-100 text-slate-600 font-black py-5 rounded-full text-lg hover:border-red-200 hover:text-red-500 transition-all shadow-lg flex items-center justify-center gap-2"
           >
-            <span>➕</span> Novo Duelo
+            <span>➕</span> New duel
           </button>
           <button 
             onClick={finalizeGameSession}
             disabled={count === 0}
             className="flex-[2] bg-red-600 text-white font-black py-5 rounded-full text-xl shadow-[0_15px_40px_rgba(220,38,38,0.3)] hover:bg-red-700 hover:-translate-y-1 transition-all active:translate-y-0 disabled:opacity-50 disabled:hover:translate-y-0 flex items-center justify-center gap-3"
           >
-            Confirmar e Pontuar 🏅
+            Confirm and award points 🏅
           </button>
         </div>
       </div>

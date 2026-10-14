@@ -36,7 +36,7 @@ const App: React.FC = () => {
   }, [members, teams, games, history]);
 
   const resetAll = () => {
-    if (confirm('Tens a certeza que queres apagar tudo e recomeçar?')) {
+    if (confirm('Are you sure you want to delete everything and start over?')) {
       setMembers([]);
       setTeams([]);
       setGames([]);
@@ -97,14 +97,14 @@ const App: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="text-4xl">🎄</span>
             <h1 className="text-3xl md:text-4xl christmas-font font-bold tracking-wider">
-              Natal em Família
+              Family Christmas
             </h1>
           </div>
           <button 
             onClick={resetAll}
             className="text-xs bg-red-700 hover:bg-red-800 px-3 py-1 rounded-full transition-colors flex items-center gap-1"
           >
-            {ICONS.Trash} Reset Total
+            {ICONS.Trash} Reset all
           </button>
         </div>
       </header>
@@ -123,31 +123,31 @@ const App: React.FC = () => {
             active={activeView === 'setup'} 
             onClick={() => setActiveView('setup')} 
             icon={ICONS.Users} 
-            label="Família" 
+            label="Family" 
           />
           <NavItem 
             active={activeView === 'teams'} 
             onClick={() => setActiveView('teams')} 
             icon={ICONS.Star} 
-            label="Equipas" 
+            label="Teams" 
           />
           <NavItem 
             active={activeView === 'games'} 
             onClick={() => setActiveView('games')} 
             icon={ICONS.Gamepad} 
-            label="Jogos" 
+            label="Games" 
           />
           <NavItem 
             active={activeView === 'play'} 
             onClick={() => setActiveView('play')} 
             icon={ICONS.Play} 
-            label="Jogar" 
+            label="Play" 
           />
           <NavItem 
             active={activeView === 'scoreboard'} 
             onClick={() => setActiveView('scoreboard')} 
             icon={ICONS.Trophy} 
-            label="Placar" 
+            label="Scores" 
           />
           <button 
             onClick={() => setActiveView('podium')}

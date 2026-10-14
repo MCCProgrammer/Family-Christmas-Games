@@ -31,8 +31,8 @@ const MemberManager: React.FC<Props> = ({ members, setMembers }) => {
   return (
     <div className="p-6">
       <div className="mb-8 text-center">
-        <h2 className="text-2xl font-bold text-red-600 mb-2">Quem vai jogar?</h2>
-        <p className="text-slate-500">Adiciona todos os membros da família que vão participar.</p>
+        <h2 className="text-2xl font-bold text-red-600 mb-2">Who's playing?</h2>
+        <p className="text-slate-500">Add every family member who's taking part.</p>
       </div>
 
       <form onSubmit={addMember} className="bg-red-50 p-6 rounded-2xl mb-8 flex flex-col gap-4 shadow-inner">
@@ -55,14 +55,14 @@ const MemberManager: React.FC<Props> = ({ members, setMembers }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nome do membro..."
+            placeholder="Name..."
             className="flex-1 px-4 py-3 rounded-xl border-2 border-red-100 bg-white text-slate-900 placeholder-slate-400 focus:border-red-400 focus:outline-none transition-colors font-semibold"
           />
           <button
             type="submit"
             className="bg-red-600 text-white px-6 py-3 rounded-xl hover:bg-red-700 transition-colors flex items-center gap-2 font-bold shadow-md"
           >
-            {ICONS.UserPlus} Adicionar
+            {ICONS.UserPlus} Add
           </button>
         </div>
       </form>
@@ -86,7 +86,7 @@ const MemberManager: React.FC<Props> = ({ members, setMembers }) => {
 
       {members.length === 0 && (
         <div className="text-center py-12 opacity-30 italic">
-          Ninguém adicionado ainda... Começa a festa!
+          Nobody here yet... Let the party begin!
         </div>
       )}
     </div>
